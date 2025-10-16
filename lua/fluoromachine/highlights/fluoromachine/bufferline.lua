@@ -13,8 +13,24 @@ M.load = function(opts)
   -- deriving colours from the user's theme.
   --
   -- My attempt to fix bufferline on transparent background
+  -- INFO: real shit? hold my salo
   if config.transparent then
-    hl('BufferLineFill', { bg = background })
+    --- HACK: boom
+    hl('NormalFloat', { link = 'Normal', default = false })
+    hl('FloatBorder', { link = 'DiagnosticInfo', default = false })
+
+    --- HACK: bam
+    hl('TabLine', { link = 'NormalFloat' })
+    hl('TabLineFill', { bg = nil })
+    hl('TabLineSel', { bg = nil })
+
+    --- HACK: badaboom
+    hl('StatusLine', { fg = c.fg, bg = nil })
+    hl('StatusLineNC', { fg = c.fg, bg = nil })
+
+    --- HACK: pow
+    hl('BufferLineFill', { bg = nil })
+
     if config.glow then
       hl('BufferLineBufferSelected', { fg = c.purple, bold = true })
       hl('BufferLineBufferVisible', { fg = darken(c.purple, 50) })
